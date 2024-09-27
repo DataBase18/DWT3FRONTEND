@@ -1,10 +1,11 @@
 
-import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap'; 
+import React, { useContext, useState } from 'react';
+import { Form, Button, Container, Col } from 'react-bootstrap'; 
 import { login } from '../services/UserService.js';
 import {ErrorModel} from '../models/ErrorModel.js'
 import { Spinner } from 'react-bootstrap'; // Importa el Spinner de Bootstrap
 import Swal from 'sweetalert2'; // Importa SweetAlert
+import { SessionContext } from '../context/SessionContext.js';
 
 
 export function Login() {
@@ -12,6 +13,8 @@ export function Login() {
   const [loadingLogin, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const state = useContext(SessionContext);
 
   const loginHandle = async (e) => {
     e.preventDefault();   
@@ -24,11 +27,12 @@ export function Login() {
         title: 'Error al iniciar sesión',
         text: responseLogin.message,  
       }); 
-    } else { 
-      console.log('Inicio de sesión exitoso:', responseLogin); 
+    } else {  
+      state.setUser("Abner")
+      window.location.href = '/Home';
     }
     setLoading(false);
-  }
+  } 
 
   return (
     <Container>

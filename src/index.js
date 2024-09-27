@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css'; 
 import reportWebVitals from './reportWebVitals'; 
 import { Login } from './login/LoginScreen';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Home } from './Home/Home';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { SessionContextProvider } from './context/SessionContext';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Cambiado a BrowserRouter
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <Login></Login>
-  </React.StrictMode>
+root.render( 
+  <SessionContextProvider>   
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} /> 
+        <Route path="/Home" element={<Home />} />  
+      </Routes>
+    </Router> 
+  </SessionContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
