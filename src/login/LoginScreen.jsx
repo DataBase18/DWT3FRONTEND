@@ -6,6 +6,7 @@ import {ErrorModel} from '../models/ErrorModel.js'
 import { Spinner } from 'react-bootstrap'; // Importa el Spinner de Bootstrap
 import Swal from 'sweetalert2'; // Importa SweetAlert
 import { SessionContext } from '../context/SessionContext.js';
+import { useNavigate } from 'react-router-dom';
 
 
 export function Login() {
@@ -14,6 +15,7 @@ export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
   const state = useContext(SessionContext);
 
   const loginHandle = async (e) => {
@@ -29,7 +31,7 @@ export function Login() {
       }); 
     } else {  
       state.setUser("Abner")
-      window.location.href = '/Home';
+      navigate("/Home")
     }
     setLoading(false);
   } 
