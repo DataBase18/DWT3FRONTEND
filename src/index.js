@@ -7,6 +7,7 @@ import { Home } from './Home/Home';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import { SessionContextProvider } from './context/SessionContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Cambiado a BrowserRouter
+import { RegisterScreen } from './register/RegisterScreen';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,7 +16,9 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<Login />} /> 
+        <Route path="/Login" element={<Login />} /> 
         <Route path="/Home" element={<Home />} />  
+        <Route path="/Register" element={<RegisterScreen />} />  
       </Routes>
     </Router> 
   </SessionContextProvider>

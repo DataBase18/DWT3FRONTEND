@@ -6,7 +6,7 @@ import {ErrorModel} from '../models/ErrorModel.js'
 import { Spinner } from 'react-bootstrap'; // Importa el Spinner de Bootstrap
 import Swal from 'sweetalert2'; // Importa SweetAlert
 import { SessionContext } from '../context/SessionContext.js';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export function Login() {
@@ -30,11 +30,15 @@ export function Login() {
         text: responseLogin.message,  
       }); 
     } else {  
-      state.setUser("Abner")
+      state.setUser(responseLogin.name)
       navigate("/Home")
     }
     setLoading(false);
   } 
+
+  const registerNavigateHandle = (e) => { 
+    navigate("/Register")
+  }
 
   return (
     <Container>
@@ -75,8 +79,15 @@ export function Login() {
                   'Iniciar Sesión'
                 )
               } 
-            </Button>
+            </Button> 
           </Container>
+
+          <br />
+
+          <Button variant="secondary" onClick={registerNavigateHandle}>
+              Registrarme
+          </Button>
+
         </Form>
       </Col>
     </Container>
